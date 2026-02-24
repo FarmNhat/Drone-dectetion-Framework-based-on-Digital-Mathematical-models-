@@ -9,13 +9,14 @@
 
 Authors: 
 
-Le Thanh Binh - Computer Engineering - K23 HCMUT
+- Le Thanh Binh - Computer Engineering - K23 HCMUT
+- Pham Minh Nhat - Computer Engineering - K23 HCMUT
 
-Pham Minh Nhat - Computer Engineering - K23 HCMUT
+Note:
 
-Our respitory (will be made public after our paper got accepted): https://github.com/Mouse2204/MicroDoppler
-
-You can find filtered spectrograms, mathematic and summary reports in each output folder.
+- Our respitory (will be made public after our paper got accepted): https://github.com/Mouse2204/MicroDoppler
+- You can find filtered spectrograms, mathematic and summary reports in each /output folder.
+- You can find input data (raw numbers) in /simulate_data folder
 
 ---
 
