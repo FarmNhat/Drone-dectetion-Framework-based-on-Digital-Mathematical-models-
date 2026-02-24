@@ -1,4 +1,4 @@
-# Bounding Spectral Features by Physical Reality - A Multi-Layered UAV Anti-Spoofing Framework
+# Drone-detection Framework based on Digital Signal Processing methods
  
 > **Disclaimer**  
 > This repository contains only publicly shareable materials because the associated paper is currently under submission.  
@@ -15,6 +15,8 @@ Pham Minh Nhat - Computer Engineering - K23 HCMUT
 
 Our respitory (will be made public after our paper got accepted): https://github.com/Mouse2204/MicroDoppler
 
+You can find filtered spectrograms, mathematic and summary reports in each output folder.
+
 ---
 
 ## 1. Overview
@@ -25,8 +27,6 @@ This project implements a **multi-layered radar anti-spoofing framework** design
 - Deceptive targets (fake drones, spectral camouflage)
 
 The system is motivated by a critical limitation of many modern detection methods:
-
-> High-accuracy classifiers can still be fooled by carefully synthesized micro-Doppler signatures.
 
 Instead of depending purely on pattern recognition, this framework evaluates whether an observed signal is **consistent with physical rotor dynamics**.
 
@@ -72,7 +72,7 @@ The framework therefore treats detection as a **physical consistency verificatio
 
 The proposed system consists of five sequential stages:
 
-1. **Multi-Order STFRFT Analysis**  
+1. **Multi-Order Short-time Fractial Fourier Transform (STFRFT) Analysis**  
 2. **CFAR Detection & Time–Frequency Mode Decomposition**  
 3. **Hodge–Helmholtz Decomposition (HTS)**  
 4. **Physics-Informed Spline Optimization**  
@@ -88,7 +88,7 @@ Each stage validates a different physical or structural property of the signal.
 
 Rotor-induced micro-Doppler signatures are highly non-stationary and resemble **chirp-like components**.
 
-Limitations of STFT:
+Limitations of Short-time Fourier Transform (STFT):
 - Fixed resolution
 - Energy spreading
 - Poor concentration for rapidly varying signals
