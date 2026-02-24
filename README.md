@@ -11,204 +11,273 @@
 
 ---
 
-## Overview
+## 1. Overview
 
-This project presents a **physics-constrained anti-spoofing framework** for radar-based UAV detection.
+This project implements a **multi-layered radar anti-spoofing framework** designed to distinguish:
 
-Goal:
+- Genuine airborne targets (real drones, helicopters)  
+- Deceptive targets (fake drones, spectral camouflage)
 
-- Accept **genuine airborne targets** (real drones, helicopters)  
-- Reject **deceptive targets** (fake drones, spectral camouflage)
+The system is motivated by a critical limitation of many modern detection methods:
 
-Instead of relying purely on machine learning, the system verifies whether a radar micro-Doppler signature is **physically plausible**.
+> High-accuracy classifiers can still be fooled by carefully synthesized micro-Doppler signatures.
 
----
-
-## Key Idea
-
-A real rotor system obeys strict physical laws:
-
-- Harmonic structure  
-- Smooth motion (bounded acceleration)  
-- Geometric consistency in the spectrogram  
-- Phase coherence between harmonics  
-
-Spoofed signals may mimic appearance, but typically fail to satisfy **all constraints simultaneously**.
+Instead of depending purely on pattern recognition, this framework evaluates whether an observed signal is **consistent with physical rotor dynamics**.
 
 ---
 
-## Pipeline Summary
+## 2. Problem Motivation
 
-The framework operates in five stages:
+Traditional UAV detection techniques often rely on:
+
+- Radar Cross Section (RCS)
+- Acoustic signatures
+- Machine learning classification
+
+However:
+
+- Small drones, birds, and spoofed targets can exhibit overlapping features  
+- Deep learning models may accept signals that look correct but are **physically impossible**
+
+Recent advances in **micro-Doppler deception** show that attackers can generate signals that mimic drone-like spectra.
+
+This raises an important question:
+
+> Can we verify not just “how a signal looks”, but “whether it obeys real-world physics”?
+
+---
+
+## 3. Core Principle
+
+Real rotor systems obey strict constraints:
+
+- Harmonic structure from periodic blade motion  
+- Smooth temporal evolution due to inertia  
+- Coherent geometric patterns in the spectrogram  
+- Phase consistency across harmonics  
+
+Spoofed signals may imitate parts of this behavior, but usually fail to satisfy **all constraints simultaneously**.
+
+The framework therefore treats detection as a **physical consistency verification problem** rather than a purely statistical classification task.
+
+---
+
+## 4. Pipeline Architecture
+
+The proposed system consists of five sequential stages:
 
 1. **Multi-Order STFRFT Analysis**  
-   Enhances time–frequency concentration for chirp-like rotor signals.
-
-2. **CFAR Detection & Mode Extraction**  
-   Identifies statistically significant spectral components.
-
+2. **CFAR Detection & Time–Frequency Mode Decomposition**  
 3. **Hodge–Helmholtz Decomposition (HTS)**  
-   Measures rotational topology consistency.
-
 4. **Physics-Informed Spline Optimization**  
-   Enforces smooth, inertia-consistent trajectories.
+5. **Phase Coherence Verification**
 
-5. **Phase Coherence Verification**  
-   Validates harmonic locking from a common rotor source.
-
-Each stage tests a **different physical property**.
+Each stage validates a different physical or structural property of the signal.
 
 ---
 
-## Physical Signal Interpretation
+## 5. Stage Descriptions
 
-Rotor blades induce periodic phase modulation in radar echoes.
+### Stage 1 – Multi-Order STFRFT
 
-Practical consequence:
+Rotor-induced micro-Doppler signatures are highly non-stationary and resemble **chirp-like components**.
 
-- Energy appears at harmonic frequencies  
-- Harmonics are phase-locked  
-- Spectrogram structure is cyclic and smooth  
+Limitations of STFT:
+- Fixed resolution
+- Energy spreading
+- Poor concentration for rapidly varying signals
 
-A genuine rotor signature is therefore not just "bright lines", but a **coherent dynamical system**.
+Solution:
+- STFRFT rotates the time–frequency plane
+- Aligns with chirp trajectories
+- Produces sharper, high-contrast spectral ridges
 
----
+Why multi-order?
+- Real rotor systems contain multiple components
+- A single fractional order may not optimally align all structures
+- Multi-order analysis prevents loss of information
 
-## Why STFRFT Instead of STFT?
-
-Standard STFT suffers from fixed resolution and energy spreading.
-
-STFRFT (Short-Time Fractional Fourier Transform):
-
-- Rotates the time–frequency plane  
-- Aligns with chirp-like components  
-- Produces sharper energy concentration  
-
-Multi-order analysis further prevents missing components due to order mismatch.
-
----
-
-## Role of CFAR
-
-CFAR (Constant False Alarm Rate):
-
-- Computes local noise statistics  
-- Applies adaptive thresholds  
-- Suppresses background noise  
-
-Result: robust peak detection under varying SNR.
+Result:
+- Improved detectability
+- Enhanced robustness to masking and noise
 
 ---
 
-## Geometric Validation via HHD
+### Stage 2 – CFAR Detection & Mode Extraction
 
-The spectrogram is interpreted as a 2D field.
+After STFRFT, the spectrogram is normalized using **CFAR (Constant False Alarm Rate)**.
+
+Purpose:
+- Adaptive thresholding based on local noise estimates
+- Stable false alarm behavior across varying SNR
+- Suppression of background clutter
+
+Following detection:
+- Time–Frequency Mode Decomposition (TFMD) extracts dominant ridges
+- Enables estimation of rotor parameters (e.g., periodicity, RPM)
+
+Result:
+- Clean structural representation
+- Reduction of noise-induced artifacts
+
+---
+
+### Stage 3 – Hodge–Helmholtz Decomposition (HTS)
+
+Instead of treating the spectrogram as a simple image, it is interpreted as a **2D field**.
 
 Hodge–Helmholtz Decomposition separates:
 
-- Gradient-like variations  
-- Rotational (curl) structures  
-- Harmonic residuals  
+- Gradient-like components (irregular variations)
+- Rotational/curl components (cyclic structures)
+- Harmonic residuals
+
+Physical interpretation:
+
+- Genuine rotor motion → strong rotational topology
+- Spoofed overlays → increased gradient irregularities
 
 **Hodge Trust Score (HTS):**
 
-- High HTS → coherent rotational topology  
-- Low HTS → irregular / inconsistent structure  
+- Measures dominance of rotational energy
+- High HTS → coherent rotor-like topology
+- Low HTS → structural inconsistency
 
-Spoofed overlays often increase gradient noise and reduce rotational dominance.
-
----
-
-## Physics-Based Trajectory Check
-
-Extracted frequency tracks must resemble **physically feasible motion**.
-
-Constraints applied:
-
-- Smooth velocity  
-- Bounded acceleration  
-- No abrupt jumps inconsistent with inertia  
-
-Spline optimization penalizes non-physical behavior.
+Result:
+- Geometric validation of rotor dynamics
 
 ---
 
-## Phase Coherence Principle
+### Stage 4 – Physics-Informed Spline Optimization
 
-For a real rotor:
+Extracted frequency trajectories must obey **mechanical inertia constraints**.
 
-- Harmonics originate from one rotation source  
-- Their phases evolve proportionally  
+Real rotor behavior:
+- Smooth velocity
+- Bounded acceleration
+- No abrupt discontinuities
+
+Spline optimization:
+- Penalizes excessive curvature
+- Suppresses non-physical jumps
+- Enforces dynamically feasible motion
+
+Result:
+- Rejects trajectories inconsistent with real-world rotor mechanics
+
+---
+
+### Stage 5 – Phase Coherence Verification
+
+Rotor harmonics originate from a **single physical rotation source**.
+
+Requirement:
+- Harmonics must remain phase-locked
 
 Spoofed mixtures:
+- Combine independent sources
+- Break harmonic phase relationships
 
-- Combine independent sources  
-- Break harmonic phase relationships  
+Phase coherence analysis:
+- Evaluates stability of harmonic phase differences
+- Detects hidden inconsistencies invisible in magnitude-only spectra
 
-Phase coherence metric quantifies this inconsistency.
+Result:
+- Physics-based authentication layer
 
 ---
 
-## Dataset
+## 6. Why This Multi-Layer Approach Works
+
+Each stage validates an independent constraint:
+
+| Stage | Constraint Type |
+|------|----------------|
+| STFRFT | Chirp / spectral alignment |
+| CFAR + TFMD | Statistical significance / structure |
+| HHD (HTS) | Geometric rotational topology |
+| Spline | Dynamic / inertia consistency |
+| Phase | Harmonic coherence |
+
+For a spoofed signal to succeed, it must simultaneously satisfy:
+
+- Spectral plausibility  
+- Geometric consistency  
+- Dynamic feasibility  
+- Phase coherence  
+
+In practice, this requires reproducing **true rotor physics**, not just spectral appearance.
+
+---
+
+## 7. Dataset
 
 This repository includes:
 
-- Synthetic radar echoes  
-- Physics-based simulation  
-- Publicly shareable signals  
+- Physics-based synthetic radar echoes  
+- Controlled SNR conditions  
+- Publicly shareable simulation data  
 
-Target classes:
+Target categories:
 
 - Real Drone  
 - Helicopter  
 - Fake Drone (composite spoofing)
 
-No proprietary datasets are included.
+No proprietary or restricted datasets are used.
 
 ---
 
-## Experimental Results (Summary)
+## 8. Experimental Performance (Summary)
 
-| Metric | Performance |
-|--------|-------------|
-| False Positive Rate | ~0.00% |
-| True Negative Rate | ~99.00% |
-| Overall Accuracy | ~99.67% |
+Observed results:
 
-Primary rejection factors for fake drones:
+- Near-zero false positives on genuine targets  
+- ~99% rejection of fake drones  
+- Overall accuracy ≈ 99.7%
 
-- Reduced HTS  
-- Poor phase coherence  
+Key rejection indicators for deceptive signals:
+
+- Reduced Hodge Trust Score  
+- Degraded phase coherence  
 - Dynamically inconsistent trajectories  
 
+Additionally, the pipeline provides **interpretable diagnostics**, identifying likely deception mechanisms.
+
 ---
 
-## Contributions
+## 9. Contributions
 
-- Physics-grounded anti-spoofing framework  
-- Multi-order STFRFT enhancement  
-- Geometric validation via HHD  
+This work introduces:
+
+- A physics-constrained UAV anti-spoofing framework  
+- Multi-order STFRFT for adaptive chirp concentration  
+- Geometric validation using Hodge–Helmholtz Decomposition  
 - Dynamics enforcement via spline optimization  
-- Harmonic authentication via phase coherence  
+- Harmonic authentication through phase coherence  
+
+The framework emphasizes **physical interpretability** over black-box decision making.
 
 ---
 
-## Limitations & Future Work
+## 10. Limitations & Future Work
 
-- Adaptive threshold refinement  
-- Real radar hardware validation  
+Planned extensions include:
+
+- Adaptive threshold calibration  
+- Validation with real radar hardware  
 - Robustness to advanced DRFM deception  
-- Multi-target and clutter scenarios  
+- Multi-target and cluttered environments  
 
 ---
 
-## Citation
+## 11. Citation
 
 If referencing this work, please cite the associated paper  
 (currently under submission).
 
 ---
 
-## Contact
+## 12. Contact
 
 For academic collaboration or questions, please open an issue.
