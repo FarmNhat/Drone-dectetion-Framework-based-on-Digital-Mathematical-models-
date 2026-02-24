@@ -1,10 +1,4 @@
 # Bounding Spectral Features by Physical Reality - A Multi-Layered UAV Anti-Spoofing Framework
-
-Authors: 
-
-Le Thanh Binh - Computer Engineering - K23 HCMUT
-
-Pham Minh Nhat - Computer Engineering - K23 HCMUT
  
 > **Disclaimer**  
 > This repository contains only publicly shareable materials because the associated paper is currently under submission.  
@@ -12,7 +6,14 @@ Pham Minh Nhat - Computer Engineering - K23 HCMUT
 > - Public / synthetic data only  
 > - Outputs and demonstrations  
 > - Input data (mathematical-based generated)
-> Our respitory (will be made public after our paper got accepted): https://github.com/Mouse2204/MicroDoppler
+
+Authors: 
+
+Le Thanh Binh - Computer Engineering - K23 HCMUT
+
+Pham Minh Nhat - Computer Engineering - K23 HCMUT
+
+Our respitory (will be made public after our paper got accepted): https://github.com/Mouse2204/MicroDoppler
 
 ---
 
