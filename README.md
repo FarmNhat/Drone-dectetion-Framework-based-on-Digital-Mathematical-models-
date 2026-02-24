@@ -2,7 +2,9 @@
 ### A Multi-Layered UAV Anti-Spoofing Framework
 
 Authors: 
+
 Le Thanh Binh - Computer Engineering - K23 HCMUT
+
 Pham Minh Nhat - Computer Engineering - K23 HCMUT
  
 > **Disclaimer**  
