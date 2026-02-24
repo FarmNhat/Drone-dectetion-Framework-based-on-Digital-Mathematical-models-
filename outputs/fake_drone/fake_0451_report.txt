@@ -1,0 +1,62 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[FAKE] HIGH CONFIDENCE: FAKE
+Fake Type: SYNTHETIC_ARTIFACT
+
+DETAILED CONFIDENCE: 95.0% (VERY_HIGH) - VERY RELIABLE
+
+FILE INFORMATION:
+  File: fake_0451.csv
+  Processing time: 10.37s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.420 - MODERATE: Signal has some structure but may be challenging
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.413
+  SNR: 19.6 dB
+  Confidence: 28%
+  Result: SUSPICIOUS - Poor phase coherence
+  Reason: Modulated signal with poor phase coherence, Poor Jacobi coherence
+
+DECISION FACTORS:
+  1. [MODERATE] Moderate HTS + Moderate Physics (drone‑like fake)
+  2. [INFO] SYNTHETIC ARTIFACT: Perfect Physics but Missing Topology
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: MIXED
+  Clean signal: DRONE
+    Confidence: 79.8%
+  Rotation: 5.00 Hz
+  Estimated blades: 2
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.515
+    - MIXED SIGNATURE
+    - Energy Gradient: 3.73e-01
+    - Energy Curl: 2.19e+00
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 18.98
+  Physics Score: 0.492 - POOR PHYSICS
+  Ghost Signal: YES
+    Reason: Low physics score
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.398
+  Support (C_sup): 0.055
+  Variance (C_var): 0.814
+  Spectral Kurtosis: 0.246
+
+FINAL RECOMMENDATION: REJECT
+CONFIDENCE ANALYSIS: Very strong evidence of fakery
+
+STFRFT CONFIGURATION
+  Optimal Order: 1.002
+  Window Sizes: STFT=64, STFRFT=128
+================================================================================
+END OF REPORT
+================================================================================

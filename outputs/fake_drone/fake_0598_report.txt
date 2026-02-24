@@ -1,0 +1,65 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[FAKE] HIGH CONFIDENCE: FAKE
+Fake Type: SYNTHETIC_ARTIFACT
+
+DETAILED CONFIDENCE: 95.0% (VERY_HIGH) - VERY RELIABLE
+
+FILE INFORMATION:
+  File: fake_0598.csv
+  Processing time: 6.80s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.350 - MODERATE: Signal has some structure but may be challenging
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.372
+  SNR: 19.7 dB
+  Confidence: 30%
+  Result: SUSPICIOUS - Poor phase coherence
+  Reason: LFM signal with poor phase characteristics, Poor Jacobi coherence, Poor LFM linearity
+
+DECISION FACTORS:
+  1. [STRONG] Strong camouflage anomaly (score: 0.90)
+  2. [MODERATE] Moderate HTS + Moderate Physics (drone‑like fake)
+  3. [INFO] SYNTHETIC ARTIFACT: Perfect Physics but Missing Topology
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: LFM
+  CAMOUFLAGE DETECTED
+    Primary target: DRONE
+    Confidence: 50.3%
+    Deception ratio: 0.987
+    [WARNING] High deception level
+  Rotation: 4.86 Hz
+  Estimated blades: 2
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.463
+    - WEAKLY ROTATIONAL
+    - Energy Gradient: 8.23e-02
+    - Energy Curl: 3.74e-01
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 7.64
+  Physics Score: 0.802 - GOOD PHYSICS
+  Ghost Signal: NO
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.340
+  Support (C_sup): 0.062
+  Variance (C_var): 0.652
+  Spectral Kurtosis: 0.279
+
+FINAL RECOMMENDATION: REJECT
+CONFIDENCE ANALYSIS: Very strong evidence of fakery
+
+STFRFT CONFIGURATION
+  Optimal Order: 0.998
+  Window Sizes: STFT=128, STFRFT=256
+================================================================================
+END OF REPORT
+================================================================================

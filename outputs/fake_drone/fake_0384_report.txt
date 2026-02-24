@@ -1,0 +1,66 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[FAKE] HIGH CONFIDENCE: FAKE
+Fake Type: SYNTHETIC_ARTIFACT
+
+DETAILED CONFIDENCE: 95.0% (VERY_HIGH) - VERY RELIABLE
+
+FILE INFORMATION:
+  File: fake_0384.csv
+  Processing time: 8.37s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.349 - MODERATE: Signal has some structure but may be challenging
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.650
+  SNR: 20.1 dB
+  Confidence: 57%
+  Result: GENUINE - Good phase coherence
+  Reason: LFM signal with good phase linearity (linearity: 0.89, R²: 1.000), Poor Jacobi coherence, Good LFM linearity
+
+DECISION FACTORS:
+  1. [STRONG] Strong hts anomaly (score: 0.86)
+  2. [STRONG] Strong camouflage anomaly (score: 0.90)
+  3. [MODERATE] Moderate HTS + Moderate Physics (drone‑like fake)
+  4. [INFO] SYNTHETIC ARTIFACT: Perfect Physics but Missing Topology
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: LFM
+  CAMOUFLAGE DETECTED
+    Primary target: DRONE
+    Confidence: 54.9%
+    Deception ratio: 0.822
+    [WARNING] High deception level
+  Rotation: 4.17 Hz
+  Estimated blades: 2
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.435
+    - WEAKLY ROTATIONAL
+    - Energy Gradient: 8.72e-02
+    - Energy Curl: 3.54e-01
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 4.56
+  Physics Score: 0.882 - GOOD PHYSICS
+  Ghost Signal: NO
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.337
+  Support (C_sup): 0.062
+  Variance (C_var): 0.650
+  Spectral Kurtosis: 0.282
+
+FINAL RECOMMENDATION: REJECT
+CONFIDENCE ANALYSIS: Very strong evidence of fakery
+
+STFRFT CONFIGURATION
+  Optimal Order: 1.002
+  Window Sizes: STFT=128, STFRFT=256
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,63 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[FAKE] HIGH CONFIDENCE: FAKE
+Fake Type: HELICOPTER_IMPOSTOR
+
+DETAILED CONFIDENCE: 95.0% (VERY_HIGH) - VERY RELIABLE
+
+FILE INFORMATION:
+  File: fake_0469.csv
+  Processing time: 9.81s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.428 - MODERATE: Signal has some structure but may be challenging
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.255
+  SNR: 19.0 dB
+  Confidence: 15%
+  Result: SUSPICIOUS - Poor phase coherence
+  Reason: Modulated signal with poor phase coherence, Poor Jacobi coherence
+
+DECISION FACTORS:
+  1. [STRONG] Strong physics anomaly (score: 0.81)
+  2. [STRONG] Strong phase_coherence anomaly (score: 0.89)
+  3. [INFO] Low HTS + Low Physics (helicopter‑like fake)
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: MIXED
+  Clean signal: HELICOPTER
+    Confidence: 90.9%
+  Rotation: 1.69 Hz
+  Estimated blades: 6
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.514
+    - MIXED SIGNATURE
+    - Energy Gradient: 3.64e-01
+    - Energy Curl: 2.20e+00
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 30.22
+  Physics Score: 0.213 - POOR PHYSICS
+  Ghost Signal: YES
+    Reason: Low physics score
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.398
+  Support (C_sup): 0.062
+  Variance (C_var): 0.834
+  Spectral Kurtosis: 0.242
+
+FINAL RECOMMENDATION: REJECT
+CONFIDENCE ANALYSIS: Very strong evidence of fakery
+
+STFRFT CONFIGURATION
+  Optimal Order: 0.997
+  Window Sizes: STFT=64, STFRFT=128
+================================================================================
+END OF REPORT
+================================================================================

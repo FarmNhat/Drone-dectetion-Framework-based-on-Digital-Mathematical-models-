@@ -1,0 +1,57 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[LIKELY GENUINE] LIKELY GENUINE
+
+DETAILED CONFIDENCE: 70.9% (MEDIUM) - MODERATE
+
+FILE INFORMATION:
+  File: fake_0794.csv
+  Processing time: 10.20s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.422 - MODERATE: Signal has some structure but may be challenging
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.391
+  SNR: 19.5 dB
+  Confidence: 26%
+  Result: SUSPICIOUS - Poor phase coherence
+  Reason: Modulated signal with poor phase coherence, Poor Jacobi coherence
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: MIXED
+  Clean signal: HELICOPTER
+    Confidence: 92.1%
+  Rotation: 4.98 Hz
+  Estimated blades: 2
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.585
+    - MIXED SIGNATURE
+    - Energy Gradient: 3.15e-01
+    - Energy Curl: 2.65e+00
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 19.76
+  Physics Score: 0.481 - POOR PHYSICS
+  Ghost Signal: YES
+    Reason: Low physics score
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.400
+  Support (C_sup): 0.078
+  Variance (C_var): 0.794
+  Spectral Kurtosis: 0.243
+
+FINAL RECOMMENDATION: ACCEPT
+CONFIDENCE ANALYSIS: Low confidence - verification advised
+
+STFRFT CONFIGURATION
+  Optimal Order: 0.996
+  Window Sizes: STFT=64, STFRFT=128
+================================================================================
+END OF REPORT
+================================================================================

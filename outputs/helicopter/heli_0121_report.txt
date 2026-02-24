@@ -1,0 +1,62 @@
+================================================================================
+GEOTOP-RADAR COMPREHENSIVE ANALYSIS REPORT v3.0
+NOW WITH PHASE COHERENCE ANALYSIS
+================================================================================
+
+[GENUINE] HIGH CONFIDENCE: GENUINE
+
+DETAILED CONFIDENCE: 95.0% (VERY_HIGH) - VERY RELIABLE
+
+FILE INFORMATION:
+  File: heli_0121.csv
+  Processing time: 6.26s
+  Signal length: 8000 samples (2.00s)
+  GeTop Readiness: 0.660 - GOOD: Signal well-structured for GeTop analysis
+
+STAGE 4: PHASE COHERENCE ANALYSIS (ENHANCED)
+  Phase Coherence Score: 0.460
+  SNR: 21.6 dB
+  Confidence: 30%
+  Result: SUSPICIOUS - Poor phase coherence
+  Reason: LFM signal with poor phase characteristics, Poor Jacobi coherence, Poor LFM linearity
+
+DECISION FACTORS:
+  1. [INFO] HTS PROTECTION: Verified Rotational Topology
+
+STAGE 1: STFRFT ANALYSIS
+  Signal Type: LFM
+  CAMOUFLAGE DETECTED
+    Primary target: DRONE
+    Confidence: 63.9%
+    Deception ratio: 0.566
+    [WARNING] High deception level
+  Rotation: 5.00 Hz
+  Estimated blades: 2
+
+STAGE 2: HODGE DECOMPOSITION
+  Hodge Trust Score (HTS): 0.737
+    - STRONGLY ROTATIONAL
+    - Energy Gradient: 9.78e-02
+    - Energy Curl: 2.84e+00
+    - Anomalies: YES
+
+STAGE 3: PHYSICS CHECK (Spline)
+  Hybrid Energy: 11.98
+  Physics Score: 0.731 - GOOD PHYSICS
+  Ghost Signal: NO
+
+STATISTICAL METRICS
+  Smoothness (C_sm): 0.417
+  Support (C_sup): 1.000
+  Variance (C_var): 0.643
+  Spectral Kurtosis: 0.183
+
+FINAL RECOMMENDATION: ACCEPT
+CONFIDENCE ANALYSIS: Very high confidence in genuineness
+
+STFRFT CONFIGURATION
+  Optimal Order: 1.494
+  Window Sizes: STFT=128, STFRFT=256
+================================================================================
+END OF REPORT
+================================================================================
